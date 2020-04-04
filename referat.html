@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Micro Frontends - extending the microservice idea to frontend development</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
 
     <header>
         <h1>Micro Frontends - extending the microservice idea to frontend development</h1>
-        <img src="../img/banner.png" alt="Banner">
+        <img src="./img/banner.png" alt="Banner">
     </header>
 
     <main>
@@ -97,12 +97,12 @@
           <h2 id="impl">Имплементиране на micro frontends <a class="resource" href="#resource4">[4]</a></h2>
           <p>Представете си, че работите за компания, която преминава от монолитна архитектура към microservices. Наскоро сте открили няколко независими функционалности и досегашният монолит се е стеснил до отделни backend microservices и отделна услуга, предоставяща потребителския интерфейс. Frontend модулът, обаче все още е монолитът, който се разгръща над останалите услуги. Това означава, че за него все още съществуват същите проблеми, както преди рефакторирането към microservices модела. Фигура 1 обобщава текущата ситуация:</p>
           <figure id="figure1">
-            <img src="../img/Figure 1.png" alt="Фигура 1. Microservices архитектура с монолитен frontend">
+            <img src="./img/Figure 1.png" alt="Фигура 1. Microservices архитектура с монолитен frontend">
             <figcaption>Фигура 1. Microservices архитектура с монолитен frontend</figcaption>
           </figure>
           <p>Когато се имплементира microservices архитектура, целта е услугите да са малки. Същото трябва да важи и за frontend стека. Въпреки че едно приложение не може да бъде напълно разделено на няколко по-малки, няколко екипа могат да работят по отделни части frontend, сякаш те са напълно различни приложения. По този начин се постига вертикална декомпозиция на едно цялостно консистентно приложение (Фигура 2).</p>
           <figure id="figure2">
-            <img src="../img/Figure 2.png" alt="Фигура 2. Вертикална декомпозиция">
+            <img src="./img/Figure 2.png" alt="Фигура 2. Вертикална декомпозиция">
             <figcaption>Фигура 2. Вертикална декомпозиция</figcaption>
           </figure>
           <p>Вертикалната декомпозиция е осъществима по един от следните начини:</p>
@@ -113,7 +113,7 @@
           <h3 id="composite">Съставен frontend</h3>
           <p>Възможно е frontend частта на едно приложение да бъде съставено от различни компоненти. Всеки от тях се поддържа от отделни екипи и се внедрява независимо от останалите. Фигура 3 показва един примерен съставен frontend:</p>
           <figure id="figure3">
-            <img src="../img/Figure 3.png" alt="Фигура 3. Съставен frontend">
+            <img src="./img/Figure 3.png" alt="Фигура 3. Съставен frontend">
             <figcaption>Фигура 3. Съставен frontend</figcaption>
           </figure>
           <p>Отделните компоненти могат да се интегрират по време на разработка, внедряване или изпълнение. Всеки метод си има и предимства, и недостатъци. Комбинирането на множество компоненти чрез споделени библиотеки в един frontend, е пример за интегриране по време на разработката. Този подход, обаче, не предоставя достатъчно гъвкавост при внедряването на отделните модули. Повече гъвкавост може да се намери при внедряването по време на изпълнение. Пример за това е използването на AJAX за зареждане на HTML. При този сценарий, приложението единствено трябва да знае от къде да получи компонентите си. Проблемът тук е, че изпълнението на заявките отнема време.</p>
@@ -231,7 +231,7 @@ npm run start:prod</code>
             <figcaption>Код 8. Команди за изпълнение на header компонента ни</figcaption>
           </figure>
           <figure id="figure4">
-            <img src="../img/Figure 4.png" alt="Фигура 4. Заглавен компонент">
+            <img src="./img/Figure 4.png" alt="Фигура 4. Заглавен компонент">
             <figcaption>Фигура 4. Заглавен компонент</figcaption>
           </figure>
           <p>Ще изпълним същото в Docker. За целта в root директорията създаваме <code class="inline-code">Dockerfile</code>:</p>
@@ -277,11 +277,11 @@ heroku open</code>
           </ul>
           <p>Фигура 5 и Фигура 6 демонстрират как изглеждат новите ни компоненти.</p>
           <figure id="figure5">
-            <img src="../img/Figure 5.png" alt="Фигура 5. Компонент за продукти">
+            <img src="./img/Figure 5.png" alt="Фигура 5. Компонент за продукти">
             <figcaption>Фигура 5. Компонент за продукти</figcaption>
           </figure>
           <figure id="figure6">
-            <img src="../img/Figure 6.png" alt="Фигура 6. Компонент за пазарна количка">
+            <img src="./img/Figure 6.png" alt="Фигура 6. Компонент за пазарна количка">
             <figcaption>Фигура 6. Компонент за пазарна количка</figcaption>
           </figure>
           <p>Вече имаме няколко компонента, които в следващата част ще съберем в една страница за нашия уеб сайт.</p>
@@ -351,7 +351,7 @@ server.listen(port, () =&gt; {
 
           <p>С помощта на този сървър нашите компоненти ще бъдат заредени в HTML страницата, която вече създадохме. Финалният резултат се вижда на Фигура 7, след като е изпълнена командата <code class="inline-code">node server.js</code>.</p>
           <figure id="figure7">
-            <img src="../img/Figure 7.png" alt="Фигура 7. Начална страница">
+            <img src="./img/Figure 7.png" alt="Фигура 7. Начална страница">
             <figcaption>Фигура 7. Начална страница</figcaption>
           </figure>
           <p>Тук е и целият код:</p>
@@ -360,7 +360,7 @@ server.listen(port, () =&gt; {
           </ul>
           <p>Фигура 8 показва архитектурата ни. Всеки правоъгълник е отделен компонент, внедрен в отделен сървър, който се изпълнява в Docker контейнер</p>
           <figure id="figure8">
-            <img src="../img/Figure 8.png" alt="Фигура 8. Финална архитектура">
+            <img src="./img/Figure 8.png" alt="Фигура 8. Финална архитектура">
             <figcaption>Фигура 8. Финална архитектура</figcaption>
           </figure>
 
