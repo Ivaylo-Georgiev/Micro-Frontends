@@ -45,16 +45,18 @@
                 </li>
                 <li><a href="#against">Аргументи срещу micro frontend архитектурата</a></li>
                 <li><a href="#conclusion">Заключение</a></li>
-                <li><a href="#resources">Източници</a></li>
+                <li><a href="#cites">Цитирана литература</a></li>
+                <li><a href="#code-example">Списък с примерен код</a></li>
+                <li><a href="#figures">Списък с фигури</a></li>
             </ol>
         </section>
 
         <article>
-          <h2 id="intro">Какво е micro frontend?</h2>
+          <h2 id="intro">Какво е micro frontend? <a class="resource" href="#resource1">[1]</a></h2>
           <p>Терминът micro frontend за първи път се появява в ThoughtWorks Technology Radar в края на 2016 година. Той разширява концепцията за micro services във frontend света. Текущите тенденции са за изграждане на богати на функционалности браузър приложения на основата на micro services архитектурата. С течение на времето, frontend слоят, често разработван от отделен екип, расте и става сложен за поддръжка. Това се нарича frontend монолит.</p>
           <p>Идеята на micro frontend е да се мисли за уеб приложенията като композиция от функционалности, поддържани от независими екипи. Всеки екип се занимава с отделна бизнес зона, от която се интересува и върху която се специализира. Екипите са с пресичащи се функционални дялове и разработват приложенията си от край до край - от база данни до потребителски интерфейс.</p>
 
-          <h2 id="ideas">Основни идеи на micro frontend</h2>
+          <h2 id="ideas">Основни идеи на micro frontend <a class="resource" href="#resource2">[2]</a></h2>
           <ul>
             <li class="bold">Бъдете технологично агностически</li>
           </ul
@@ -76,7 +78,7 @@
           </ul>
           <p>Вашите функционалности трябва да са използваеми от гледна точка на потребителя, дори след появата на грешки.</p>
 
-          <h2 id="monolith">Монолитният подход не работи за големи приложения</h2>
+          <h2 id="monolith">Монолитният подход не работи за големи приложения <a class="resource" href="#resource3">[3]</a></h2>
           <p>Монолитният подход при големи frontend приложения е тромав. Необходимо е да се намери начин тези приложения да бъдат разделени на по-малки модули, които да се държат независимо.</p>
           <p>Например:</p>
           <ul>
@@ -92,13 +94,17 @@
           </ol>
           <p>Решението е micro frontend. Компании като Spotify, Klarna, Zalando, Upwork и Allegro използват тази архитектура за уеб сайтовете си.</p>
 
-          <h2 id="impl">Имплементиране на micro frontends</h2>
+          <h2 id="impl">Имплементиране на micro frontends <a class="resource" href="#resource4">[4]</a></h2>
           <p>Представете си, че работите за компания, която преминава от монолитна архитектура към microservices. Наскоро сте открили няколко независими функционалности и досегашният монолит се е стеснил до отделни backend microservices и отделна услуга, предоставяща потребителския интерфейс. Frontend модулът, обаче все още е монолитът, който се разгръща над останалите услуги. Това означава, че за него все още съществуват същите проблеми, както преди рефакторирането към microservices модела. Фигура 1 обобщава текущата ситуация:</p>
-          <img src="../images/Figure 1.png" alt="Фигура 1. Microservices архитектура с монолитен frontend">
-          <figcaption>Фигура 1. Microservices архитектура с монолитен frontend</figcaption>
+          <figure id="figure1">
+            <img src="../images/Figure 1.png" alt="Фигура 1. Microservices архитектура с монолитен frontend">
+            <figcaption>Фигура 1. Microservices архитектура с монолитен frontend</figcaption>
+          </figure>
           <p>Когато се имплементира microservices архитектура, целта е услугите да са малки. Същото трябва да важи и за frontend стека. Въпреки че едно приложение не може да бъде напълно разделено на няколко по-малки, няколко екипа могат да работят по отделни части frontend, сякаш те са напълно различни приложения. По този начин се постига вертикална декомпозиция на едно цялостно консистентно приложение (Фигура 2).</p>
-          <img src="../images/Figure 2.png" alt="Фигура 2. Вертикална декомпозиция">
-          <figcaption>Фигура 2. Вертикална декомпозиция</figcaption>
+          <figure id="figure2">
+            <img src="../images/Figure 2.png" alt="Фигура 2. Вертикална декомпозиция">
+            <figcaption>Фигура 2. Вертикална декомпозиция</figcaption>
+          </figure>
           <p>Вертикалната декомпозиция е осъществима по един от следните начини:</p>
           <h3 id="shared">Споделен код</h3>
           <p>Кодът може да бъде споделен, за да се подсигури консистентност на потребителския интерфейс. За съжаление, по този начин се рискува да се обвържат отделните услуги чрез споделения код. Това дори би довело до невъзможност за внедряване и публикуване на модулите поотделно.</p>
@@ -106,27 +112,37 @@
           <p>Въпреки че споделеният код си има недостатъци, в общия случай, всяка microservices архитектура го използва посредством библиотеки с отворен код. Понеже такъв код винаги се използва в много проекти, специално внимание се отделя на съвместимостта с различните версии.</p>
           <h3 id="composite">Съставен frontend</h3>
           <p>Възможно е frontend частта на едно приложение да бъде съставено от различни компоненти. Всеки от тях се поддържа от отделни екипи и се внедрява независимо от останалите. Фигура 3 показва един примерен съставен frontend:</p>
-          <img src="../images/Figure 3.png" alt="Фигура 3. Съставен frontend">
-          <figcaption>Фигура 3. Съставен frontend</figcaption>
+          <figure id="figure3">
+            <img src="../images/Figure 3.png" alt="Фигура 3. Съставен frontend">
+            <figcaption>Фигура 3. Съставен frontend</figcaption>
+          </figure>
           <p>Отделните компоненти могат да се интегрират по време на разработка, внедряване или изпълнение. Всеки метод си има и предимства, и недостатъци. Комбинирането на множество компоненти чрез споделени библиотеки в един frontend, е пример за интегриране по време на разработката. Този подход, обаче, не предоставя достатъчно гъвкавост при внедряването на отделните модули. Повече гъвкавост може да се намери при внедряването по време на изпълнение. Пример за това е използването на AJAX за зареждане на HTML. При този сценарий, приложението единствено трябва да знае от къде да получи компонентите си. Проблемът тук е, че изпълнението на заявките отнема време.</p>
           <p>Интеграцията може да бъде осъществена също така  с помощта на iFrames, web components, server-side integration, client-side JavaScript, routing, shadow DOM и други, като всеки от методите си има предимства и недостатъци.</p>
-          <h3 id="custom">Преизползваеми уеб компоненти</h3>
+          <h3 id="custom">Преизползваеми уеб компоненти <a class="resource" href="#resource5">[5]</a></h3>
           <p>С персонализирани елементи, уеб разработчиците могат да създават нови HTML тагове или да променят текущи такива. Този приложно-програмен интерфейс е в основата на <a href="https://www.webcomponents.org/" target="_blank">уеб компонентите</a>. Той определя стандартизиран начин за създаване на преизползваеми компоненти, използвайки нищо повече от чист JavaScript/HTML/CSS. Резултатът е по-малко код, който е модулен и може да се използва повече от веднъж в приложенията ни.</p>
           <h4 id="new">Дефиниране на нов елемент</h4>
           <p>За да дефинираме нов HTML елемент, ни е необходим JavaScript. Глобалната променлива <code class="inline-code">customElements</code> се използва за дефиниране на персонализиран елемент и за обучаване на браузъра за нов таг. Извиквайки <code class="inline-code">customElements.define()</code> с името на тага, който искаме да създадем и JavaScript клас, наследяващ <code class="inline-code">HTMLElement</code>, е всичко, от което се нуждаем.</p>
-          <p>Пример: дефиниране на таг <code class="inline-code">&lt;app-drawer&gt;</code>:</p>
-          <code class="code-block">class AppDrawer extends HTMLElement {...}
+          <p>Пример:</p>
+          <figure id="code1">
+            <code class="code-block">class AppDrawer extends HTMLElement {...}
 window.customElements.define('app-drawer', AppDrawer);</code>
+            <figcaption>Код 1. Дефиниране на таг <code class="inline-code">&lt;app-drawer&gt;</code></figcaption>
+          </figure>
+
           <h4 id="inherit">Наследяване на елемент</h4>
           <p>Освен за създаване на нови елементи, приложно-програмният интерфейс за персонализирани елементи предоставя възможност за разширяване на други елементи, включително и на тези, които са вградени в браузъра.</p>
-          <p>Пример: дефиниране на <code class="inline-code">&lt;fancy-app-drawer&gt;</code>, който наследява <code class="inline-code">&lt;app-drawer&gt;</code>:</p>
-          <code class="code-block">class FancyDrawer extends AppDrawer {
+          <p>Пример:</p>
+          <figure id="code2">
+            <code class="code-block">class FancyDrawer extends AppDrawer {
   constructor() {
     super();
   }
 }
 
 customElements.define('fancy-app-drawer', FancyDrawer);</code>
+            <figcaption>Код 2. Дефиниране на <code class="inline-code">&lt;fancy-app-drawer&gt;</code>, който наследява <code class="inline-code">&lt;app-drawer&gt;</code></figcaption>
+          </figure>
+
           <h4 id="support">Поддръжка от браузъри</h4>
           <p>Chrome 54, Safari 10.1 и Firefox 63 поддържат персонифицирани елементи. Докато поддръжката стане широкодостъпна, съществува <a href="https://github.com/webcomponents/custom-elements/" target="_blank">polyfill</a>, който може да бъде използван.</p>
 
@@ -140,14 +156,19 @@ customElements.define('fancy-app-drawer', FancyDrawer);</code>
             <li>Express</li>
             <li>Heroku</li>
           </ul>
-          <h3 id="create">Създаване на отделни компоненти</h3>
+          <h3 id="create">Създаване на отделни компоненти <a class="resource" href="#resource6">[6]</a></h3>
           <p>Първият компонент ще бъде header на нашата страница:</p>
-          <code class="code-block">npm install -g create-react-app
+          <figure id="code3">
+            <code class="code-block">npm install -g create-react-app
 create-react-app header
 cd header/
 npm start</code>
+            <figcaption>Код 3. Създаване на header компонент</figcaption>
+          </figure>
+
           <p>След това създаваме рендерирането от сървърна страна. Ще го използваме по-късно, когато свързваме компонентите си заедно, но е по-добре да е готово отначало. Първо, нека направим <code class="inline-code">src/App.js</code> да изглежда като истински header:</p>
-          <code class="code-block">import React from 'react';
+          <figure id="code4">
+            <code class="code-block">import React from 'react';
 
 export default () =&gt;
   &lt;header&gt;
@@ -159,8 +180,11 @@ export default () =&gt;
           &lt;/ul&gt;
         &lt;/nav&gt;
   &lt;/header&gt;;</code>
-          <p>После, в root директорията на проекта, създаваме файл server.js, който стартира Express сървър и server-side render за нас:</p>
-          <code class="code-block">const path = require('path');
+            <figcaption>Код 4. Рендериране на header компонент от сървърна страна</figcaption>
+          </figure>
+          <p>После, в root директорията на проекта, създаваме файл <code class="inline-code">server.js</code>, който стартира Express сървър и server-side render за нас:</p>
+          <figure id="code5">
+            <code class="code-block">const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const React = require('react');
@@ -186,19 +210,33 @@ const port = process.env.PORT || 8080;
 server.listen(port, () =&gt; {
   console.log(`App listening on port ${port}`);
 });</code>
+            <figcaption>Код 5. Файл <code class="inline-code">server.js</code></figcaption>
+          </figure>
           <p>Скриптът взема нашия коренен React елемент (App), рендерира го като низ и го влага в HTML преди да го достави до потребителя. Всичко се изпълнява от NodeJS, а NodeJS не разбира синтаксис като <code class="inline-code">import</code>, затова ни трябва Babel, който да го преведе преди да го изпълни сървъра:</p>
-          <code class="code-block">yarn add --dev babel-cli babel-preset-es2015</code>
+          <figure id="code6">
+            <code class="code-block">yarn add --dev babel-cli babel-preset-es2015</code>
+            <figcaption>Код 6. Добавяне на Babbel</figcaption>
+          </figure>
           <p>Сега само трябва да добавим две задачи в секцията със скриптове във файла <code class="inline-code">package.json</code>:</p>
-          <code class="code-block">"transpile": "NODE_ENV=production babel src --out-dir transpiled --presets es2015,react-app",
+          <figure id="code7">
+            <code class="code-block">"transpile": "NODE_ENV=production babel src --out-dir transpiled --presets es2015,react-app",
 "start:prod": "NODE_ENV=production node server.js"</code>
+            <figcaption>Код 7. Нови задачи в <code class="inline-code">package.json</code></figcaption>
+          </figure>
           <p>Това е всичко. Може да изпълним header компонента ни с:</p>
-          <code class="code-block">npm run build
+          <figure id="code8">
+            <code class="code-block">npm run build
 npm run transpile
 npm run start:prod</code>
-          <img src="../images/Figure 4.png" alt="Фигура 4. Заглавен компонент">
-          <figcaption>Фигура 4. Заглавен компонент</figcaption>
+            <figcaption>Код 8. Команди за изпълнение на header компонента ни</figcaption>
+          </figure>
+          <figure id="figure4">
+            <img src="../images/Figure 4.png" alt="Фигура 4. Заглавен компонент">
+            <figcaption>Фигура 4. Заглавен компонент</figcaption>
+          </figure>
           <p>Ще изпълним същото в Docker. За целта в root директорията създаваме <code class="inline-code">Dockerfile</code>:</p>
-          <code class="code-block">FROM node
+          <figure id="code9">
+            <code class="code-block">FROM node
 
 COPY package.json .
 RUN npm install
@@ -208,16 +246,25 @@ RUN npm run build
 RUN npm run transpile
 
 CMD PORT=$PORT npm run start:prod</code>
+            <figcaption>Код 9. Файл <code class="inline-code">Dockerfile</code></figcaption>
+          </figure>
           <p>Изпълняваме командите:</p>
-          <code class="code-block">docker build . -t header
+          <figure id="code10">
+            <code class="code-block">docker build . -t header
 docker run -t -e PORT=8080 -p 8080:8080 header</code>
+            <figcaption>Код 10. Команди за изпълнение на компонент в Docker контейнер</figcaption>
+          </figure>
           <p>Вече компонента ни се изпълнява в Docker. Следва да го внедрим. За целта ще използваме Heroku. Преди да го направим, трябва да си създадем GitHub хранилище с <code class="inline-code">git init</code> и да качим всичките ни файлове там. След това:</p>
-          <code class="code-block">heroku create microfrontends-header # choose a different name
+          <figure id="code11">
+            <code class="code-block">heroku create microfrontends-header # choose a different name
 git push heroku master
 heroku plugins:install heroku-container-registry
 heroku container:login
 heroku container:push web
 heroku open</code>
+            <figcaption>Код 11. Внедряване с Heroku</figcaption>
+          </figure>
+
           <p>Работещият пример може да се намери тук: <a href="https://microfrontends-header.herokuapp.com/">https://microfrontends-header.herokuapp.com/</a></p>
           <p>Тук e финалният код за всичко:</p>
           <ul>
@@ -229,21 +276,32 @@ heroku open</code>
             <li><a href="https://github.com/microfrontends/cart/tree/part-i" target="_blank">https://github.com/microfrontends/cart/tree/part-i</a></li>
           </ul>
           <p>Фигура 5 и Фигура 6 демонстрират как изглеждат новите ни компоненти.</p>
-          <img src="../images/Figure 5.png" alt="Фигура 5. Компонент за продукти">
-          <figcaption>Фигура 5. Компонент за продукти</figcaption>
-          <img src="../images/Figure 6.png" alt="Фигура 6. Компонент за пазарна количка">
-          <figcaption>Фигура 6. Компонент за пазарна количка</figcaption>
+          <figure id="figure5">
+            <img src="../images/Figure 5.png" alt="Фигура 5. Компонент за продукти">
+            <figcaption>Фигура 5. Компонент за продукти</figcaption>
+          </figure>
+          <figure id="figure6">
+            <img src="../images/Figure 6.png" alt="Фигура 6. Компонент за пазарна количка">
+            <figcaption>Фигура 6. Компонент за пазарна количка</figcaption>
+          </figure>
           <p>Вече имаме няколко компонента, които в следващата част ще съберем в една страница за нашия уеб сайт.</p>
-          <h3 id="connect">Свързване на отделните компоненти</h3>
+          <h3 id="connect">Свързване на отделните компоненти <a class="resource" href="#resource7">[7]</a></h3>
           <p>Ще свържем компонентите, които създадохме досега от backend страната на нашето приложение. За целта ще създадем нов проект <code class="inline-code">homepage</code>:</p>
-          <code class="code-block">mkdir homepage
+          <figure id="code12">
+            <code class="code-block">mkdir homepage
 cd homepage
 git init .
 npm init</code>
+            <figcaption>Код 12. Създаване на нов проект <code class="inline-code">homepage</code></figcaption>
+          </figure>
           <p>Ще имаме нужда и от някои допълнителни инструменти:</p>
-          <code class="code-block">npm install --save express ejs request</code>
+          <figure id="code13">
+            <code class="code-block">npm install --save express ejs request</code>
+            <figcaption>Код 13. Инсталиране на допълнителни инструменти</figcaption>
+          </figure>
           <p>Сега ще създадем HTML за нашата начална страница. Нужен ни е файл <code class="inline-code">views/index.ejs</code>. Трябва да е в папката <code class="inline-code">views</code>, понеже това е папката по подразбиране за Express. Добавяме следното съдържание:</p>
-          <code class="code-block">&lt;!DOCTYPE html&gt;
+          <figure id="code14">
+            <code class="code-block">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
@@ -255,8 +313,11 @@ npm init</code>
         &lt;%- cart %&gt;
   &lt;/body&gt;
 &lt;/html&gt;</code>
+            <figcaption>Код 14. Файл <code class="inline-code">views/index.ejs</code></figcaption>
+          </figure>
           <p>Тук рендерираме прост HTML, а нашите компоненти ще се появят на мястото на EJS таговете. Затова е нужно нашият Express сървър да подсигури тези променливи. Създаваме файл <code class="inline-code">server.js</code> в root директорията, който има следното съдържание:</p>
-          <code class="code-block">const express = require('express');
+          <figure id="code15">
+            <code class="code-block">const express = require('express');
 const server = express();
 const request = require('request');
 
@@ -285,21 +346,28 @@ const port = process.env.PORT || 8080;
 server.listen(port, () =&gt; {
   console.log(`Homepage listening on port ${port}`);
 });</code>
+            <figcaption>Код 15. Файл <code class="inline-code">server.js</code></figcaption>
+          </figure>
+
           <p>С помощта на този сървър нашите компоненти ще бъдат заредени в HTML страницата, която вече създадохме. Финалният резултат се вижда на Фигура 7, след като е изпълнена командата <code class="inline-code">node server.js</code>.</p>
-          <img src="../images/Figure 7.png" alt="Фигура 7. Начална страница">
-          <figcaption>Фигура 7. Начална страница</figcaption>
+          <figure id="figure7">
+            <img src="../images/Figure 7.png" alt="Фигура 7. Начална страница">
+            <figcaption>Фигура 7. Начална страница</figcaption>
+          </figure>
           <p>Тук е и целият код:</p>
           <ul>
             <li><a href="https://github.com/microfrontends/homepage/tree/back-end" target="_blank">https://github.com/microfrontends/homepage/tree/back-end</a></li>
           </ul>
           <p>Фигура 8 показва архитектурата ни. Всеки правоъгълник е отделен компонент, внедрен в отделен сървър, който се изпълнява в Docker контейнер</p>
-          <img src="../images/Figure 8.png" alt="Фигура 8. Финална архитектура">
-          <figcaption>Фигура 8. Финална архитектура</figcaption>
+          <figure id="figure8">
+            <img src="../images/Figure 8.png" alt="Фигура 8. Финална архитектура">
+            <figcaption>Фигура 8. Финална архитектура</figcaption>
+          </figure>
 
-          <h2 id="against">Аргументи срещу micro frontend архитектурата</h2>
+          <h2 id="against">Аргументи срещу micro frontend архитектурата <a class="resource" href="#resource8">[8]</a></h2>
           <div class="quote-block">
             <q>Micro frontend: всеки (frontend) екип трябва да може да избира и променя технологичния си стек без нуждата да се координира с други екипи. Това е рецепта за бедствие. Гледайте "Какво ми се иска да знаех преди да скалирам Uber до 1000 услуги" <a href="https://www.youtube.com/watch?v=kb-m2fasdDY" target="_blank">https://www.youtube.com/watch?v=kb-m2fasdDY</a></q>
-            <cite>Federico Cargnelutti в Twitter акаунта си, публикуван на 27.05.2019 [<a href="https://twitter.com/fedecarg/status/1132942196808794113" target="_blank">https://twitter.com/fedecarg/status/1132942196808794113</a>]</cite>
+            <a class="resource" href="#resource9">[9]</a>
           </div>
           <p>Възможността да изберем каквато искаме технология наистина може да бъде рецепта за бедствие, но micro frontend архитектурата не ни вменява да използваме различни технологични стекове. Факт е, че това е възможно, но то не е задължително.</p>
           <p>Точно както е при microservices архитектурата, при micro frontends, не приключваме с 20 различни езика в една система. Поддържането на подобна екосистема е много скъпо и потенциално объркващо, ако не ни предоставя достатъчно преимущества.</p>
@@ -307,29 +375,64 @@ server.listen(port, () =&gt; {
           <p>Недостатъците и бедствията при подхода с различните технологии излизат наяве само, когато има хаос и липсва обща цел.</p>
           <div class="quote-block">
             <q>Мисля, че има технически разлики между frontend и backend: избягването на обща инфраструктура може да увеличи времето за сваляне на frontend, както и времето му за изпълнение. Също така, цялостно свързване на приложно-програмните интерфейси на отделните frontend части може да се окаже предизвикателно за изпълнение</q>
-            <cite>Dan Shappir в Twitter акаунта си, публикуван на 26.05.2019 [<a href="https://twitter.com/DanShappir/status/1132506523215761408" target="_blank">https://twitter.com/DanShappir/status/1132506523215761408</a>]</cite>
+            <a class="resource" href="#resource10">[10]</a>
           </div>
           <p>Тук, отново, всичко зависи от контекста. Работата с micro frontend и разделянето на приложението на няколко single-page приложения, например, може да позволи да се сваля само част от приложението. Разделянето на библиотеките на малки части може да позволи  по-бързото им зареждане, както и възможности на браузърите да подсигурят оптимизации в механизмите си за кеширане. Необходимо е да бъде разбрано поведението на потребителите, за да се приложи най-оптималната стратегия. Лесно можем да открием, че в общия случай потребителите посещават даден уеб сайт, за да се възползват от малка част от функционалностите му. Ето защо, най-разумно би било да се свалят и заредят само компонентите, от които той се нуждае, вместо цялото приложение. Това е нагледно приложение на закона на Парето (или правилото 80-20):</p>
           <div class="quote-block">
             <q>...във всяко едно начинание, 20% от вкараните ресурси в проект допринасят за 80% от изходния резултат.</q>
-            <cite>интерпретация в микро мащаб на закона на Парето, Уикипедия [<a href="https://en.wikipedia.org/wiki/Pareto_principle" target="_blank">https://en.wikipedia.org/wiki/Pareto_principle</a>]</cite>
+            <a class="resource" href="#resource11">[11]</a>
           </div>
           <p>Управлението на приложно-програмни интерфейси може да е сложно, но същото важи и за работата с други архитектури. Важното тук е да отбележим, че micro frontend не е универсално решение за всеки проблем. Нужно е да бъде избрана добра комбинация от практики, която да позволи доставянето на качествени решения с високи стандарти. Правилото, че за правилната работа трябва да се върши с правилните инструменти важи с пълна сила.</p>
 
-          <h2 id="conclusion">Заключение</h2>
+          <h2 id="conclusion">Заключение <a class="resource" href="#resource4">[4]</a></h2>
           <p>Когато едно приложение преминава към microservices, ще имате проблеми, ако изберете да използвате монолитен frontend. Целта е да се постигне добра вертикална декомпозиция. Каквото важи за backend услугите, важи и за frontend модулите - монолитът трябва да се раздели на контекстно независими парчета, за да се ограничи припокриването на приложно-програмните им интерфейси. Трябва да се уверим, че ядрото и интеграцията са възможно най-опростени. Когато работим върху един голям frontend проект, може да е трудно да направим подобна декомпозиция, но ако искаме да доставяме по-бързо софтуерни решения с microservices архитектура, не можем да изключим опцията за декомпозиране на frontend частта.</p>
 
-          <h2 id="resources">Източници</h2>
+          <hr>
+
+          <h2 id="cites">Цитирана литература</h2>
           <ul>
-            <li><a href="https://micro-frontends.org/" target="_blank">Micro Frontends: extending the microservice idea to frontend development</a></li>
-            <li><a href="https://www.xenonstack.com/insights/what-is-micro-frontend/ " target="_blank">Micro Frontend Architecture and Best Practices</a></li>
-            <li><a href="https://medium.com/@tomsoderlund/micro-frontends-a-microservice-approach-to-front-end-web-development-f325ebdadc16 " target="_blank">Micro frontends—a microservice approach to front-end web development</a></li>
-            <li><a href="https://xebia.com/blog/the-monolithic-frontend-in-the-microservices-architecture/ " target="_blank">The monolithic frontend in the microservices architecture</a></li>
-            <li><a href="https://developers.google.com/web/fundamentals/web-components/customelements" target="_blank">Custom Elements v1: Reusable Web Components</a></li>
-            <li><a href="https://medium.com/@_rchaves_/building-microfrontends-part-i-creating-small-apps-710d709b48b7" target="_blank">Building Microfrontends Part I — Creating small apps</a></li>
-            <li><a href="https://medium.com/@_rchaves_/building-microfrontends-part-ii-joining-apps-together-dfa1b6f17d3e " target="_blank">Building Microfrontends Part II — Joining apps together</a></li>
-            <li><a href="https://medium.com/@lucamezzalira/i-dont-understand-micro-frontends-88f7304799a9 " target="_blank">I don’t understand micro-frontends.</a></li>
-            <li><a href="https://levelup.gitconnected.com/brief-introduction-to-micro-frontends-architecture-ec928c587727" target="_blank">Introduction to micro frontends architecture</a></li>
+            <li><cite id="resource1">[1] Michael Geers, Micro Frontends: extending the microservice idea to frontend development, [<a href="https://micro-frontends.org/" target="_blank">https://micro-frontends.org/</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource2">[2] Micro Frontend Architecture and Best Practices, публикуван на 2020-10-28, [<a href="https://www.xenonstack.com/insights/what-is-micro-frontend/ " target="_blank">https://www.xenonstack.com/insights/what-is-micro-frontend/</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource3">[3] Tom Soderlund, Micro frontends—a microservice approach to front-end web development, публикуван на 2017-07-06, [<a href="https://medium.com/@tomsoderlund/micro-frontends-a-microservice-approach-to-front-end-web-development-f325ebdadc16 " target="_blank">https://medium.com/@tomsoderlund/micro-frontends-a-microservice-approach-to-front-end-web-development-f325ebdadc16</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource4">[4] Ruben Oostinga, The monolithic frontend in the microservices architecture, публикуван на 2015-07-27, [<a href="https://xebia.com/blog/the-monolithic-frontend-in-the-microservices-architecture/ " target="_blank">https://xebia.com/blog/the-monolithic-frontend-in-the-microservices-architecture/</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource5">[5] Eric Bidelman, Custom Elements v1: Reusable Web Components, [<a href="https://developers.google.com/web/fundamentals/web-components/customelements" target="_blank">https://developers.google.com/web/fundamentals/web-components/customelements</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource6">[6] Rogerio Chaves, Building Microfrontends Part I — Creating small apps, публикуван на 2017-04-04, [<a href="https://medium.com/@_rchaves_/building-microfrontends-part-i-creating-small-apps-710d709b48b7" target="_blank">https://medium.com/@_rchaves_/building-microfrontends-part-i-creating-small-apps-710d709b48b7</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource7">[7] Rogerio Chaves, Building Microfrontends Part II — Joining apps together, публикуван на 2017-04-04, [<a href="https://medium.com/@_rchaves_/building-microfrontends-part-ii-joining-apps-together-dfa1b6f17d3e " target="_blank">https://medium.com/@_rchaves_/building-microfrontends-part-ii-joining-apps-together-dfa1b6f17d3e</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource8">[8] luca mezzalira, I don’t understand micro-frontends, публикуван на 2019-05-27, [<a href="https://medium.com/@lucamezzalira/i-dont-understand-micro-frontends-88f7304799a9 " target="_blank">https://medium.com/@lucamezzalira/i-dont-understand-micro-frontends-88f7304799a9</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource9">[9] Federico Cargnelutti в Twitter акаунта си, публикуван на 27.05.2019, [<a href="https://twitter.com/fedecarg/status/1132942196808794113" target="_blank">https://twitter.com/fedecarg/status/1132942196808794113</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource10">[10] Dan Shappir в Twitter акаунта си, публикуван на 26.05.2019, [<a href="https://twitter.com/DanShappir/status/1132506523215761408" target="_blank">https://twitter.com/DanShappir/status/1132506523215761408</a>], последно посетен на 2020-04-04</cite></li>
+            <li><cite id="resource11">[11] Интерпретация в микро мащаб на закона на Парето, Уикипедия [<a href="https://en.wikipedia.org/wiki/Pareto_principle" target="_blank">https://en.wikipedia.org/wiki/Pareto_principle</a>], последно посетен на 2020-04-04</cite></li>
+          </ul>
+
+          <h2 id="code-example">Списък с примерен код</h2>
+          <ul>
+            <li><a href="#code1">Код 1.</a> Дефиниране на таг <code class="inline-code">&lt;app-drawer&gt;</code></li>
+            <li><a href="#code2">Код 2.</a> Дефиниране на <code class="inline-code">&lt;fancy-app-drawer&gt;</code>, който наследява <code class="inline-code">&lt;app-drawer&gt;</code></li>
+            <li><a href="#code3">Код 3.</a> Създаване на header компонент</li>
+            <li><a href="#code4">Код 4.</a> Рендериране на header компонент от сървърна страна</li>
+            <li><a href="#code5">Код 5.</a> Файл <code class="inline-code">server.js</code></li>
+            <li><a href="#code6">Код 6.</a> Добавяне на Babbel</li>
+            <li><a href="#code7">Код 7.</a> Нови задачи в <code class="inline-code">package.json</code></li>
+            <li><a href="#code8">Код 8.</a> Команди за изпълнение на header компонента ни</li>
+            <li><a href="#code9">Код 9.</a> Файл <code class="inline-code">Dockerfile</code></li>
+            <li><a href="#code10">Код 10.</a> Команди за изпълнение на компонент в Docker контейнер</li>
+            <li><a href="#code11">Код 11.</a> Внедряване с Heroku</li>
+            <li><a href="#code12">Код 12.</a> Създаване на нов проект <code class="inline-code">homepage</code></li>
+            <li><a href="#code13">Код 13.</a> Инсталиране на допълнителни инструменти</li>
+            <li><a href="#code14">Код 14.</a> Код 14. Файл <code class="inline-code">views/index.ejs</code></li>
+            <li><a href="#code15">Код 15.</a> Файл <code class="inline-code">server.js</code></li>
+          </ul>
+
+          <h2 id="figures">Списък с фигури</h2>
+          <ul>
+            <li><a href="#figure1">Фигура 1.</a> Microservices архитектура с монолитен frontend</li>
+            <li><a href="#figure2">Фигура 2.</a> Вертикална декомпозиция</li>
+            <li><a href="#figure3">Фигура 3.</a> Съставен frontend</li>
+            <li><a href="#figure4">Фигура 4.</a> Заглавен компонент</li>
+            <li><a href="#figure5">Фигура 5.</a> Компонент за продукти</li>
+            <li><a href="#figure6">Фигура 6.</a> Компонент за пазарна количка</li>
+            <li><a href="#figure7">Фигура 7.</a> Начална страница</li>
+            <li><a href="#figure8">Фигура 8.</a> Финална архитектура</li>
           </ul>
 
         </article>
